@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Report{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    <h3 align="center">Create Report</h3>
+    <div class="form-group">
+      <label>Report Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        placeholder="Enter Gropu Name"
+      />
+    </div>
+    <br />
+    <div class="form-group">
+        <label>Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="Description"
+          name="Description"
+          placeholder="Enter Description"
+        />
+      </div>
+      <br />
+      <div class="form-group">
+      <label>Group</label>
+      <select class="form-control" name="group">
+        {% for group in groups %}
+          <option value="{{ group.id }}">
+            {{ group.name }}
+          </option>
+        {% endfor %}
+      </select>
+        </div>
+      <br/>
+      <div class="form-group">
+      <label>Tag</label>
+      <select class="form-control" name="tag">
+        {% for tag in tags %}
+          <option value="{{ tag.id }}">
+            {{ tag.name }}
+          </option>
+        {% endfor %}
+      </select>
+        </div>
+      <br />
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+
+{% endblock %}

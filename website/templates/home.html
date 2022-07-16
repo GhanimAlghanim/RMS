@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+<script>
+  jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+      window.location = $(this).data("href");
+    });
+  });
+</script>
+
+<div class="container">
+  <form method="POST" > 
+    <h3 align="center">Search</h3>
+    <input type="text" class="form-control" name="search" placeholder="Search">
+    <br>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+  <br>
+  <br>
+    {% if reports %}
+    <label>Results</label>
+      <table class="table table-striped table-bordered table-hover table-condensed">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Group</th>
+          <th>Tag</th>
+        </tr>
+        {% for report in reports %}
+          <td>{{ report['name'] }}</td>
+          <td>{{ report['description'] }}</td>
+          <td>{{ report['group'] }}</td>
+          <td>{{ report['tag'] }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% elif submitted %}
+      <div class="alert alert-info" role="alert">No reports found</div>
+    {% endif %}
+</div>
+    {% endblock %}
